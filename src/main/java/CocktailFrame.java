@@ -12,6 +12,7 @@ import java.net.URL;
 public class CocktailFrame extends JFrame
 {
     private CocktailService service;
+    CocktailController controller;
     private CocktailFeed.Drinks drinks;
 
     private final JLabel pictureLabel;
@@ -43,7 +44,7 @@ public class CocktailFrame extends JFrame
         clearButton.addActionListener(actionEvent -> clear());
 
         nameLabel = new JLabel("", SwingConstants.CENTER);
-        instructionsLabel = new JLabel();
+        instructionsLabel = new JLabel("", SwingConstants.CENTER);
         pictureLabel = new JLabel();
 
         inputPanel = new JPanel();
@@ -77,6 +78,8 @@ public class CocktailFrame extends JFrame
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(CocktailService.class);
+
+        controller = new CocktailController(service, nameLabel, instructionsLabel, pictureLabel);
     }
 
     private void clear()
@@ -89,32 +92,7 @@ public class CocktailFrame extends JFrame
 
     private void searchCocktail()
     {
-        service.getCocktails(inputField.getText()).enqueue(new Callback<CocktailFeed>()
-        {
-            @Override
-            public void onResponse(Call<CocktailFeed> call, Response<CocktailFeed> response)
-            {
-                try
-                {
-                    drinks = response.body().drinks.get(0);
-                    nameLabel.setText(drinks.strDrink);
-                    instructionsLabel.setText("<html><p>" + drinks.strInstructions + "</p></html>");
-
-                    URL url = new URL(drinks.strDrinkThumb);
-                    Image image = ImageIO.read(url);
-                    pictureLabel.setIcon(new ImageIcon(image));
-                } catch (Exception e)
-                {
-                    nameLabel.setText("Something went wrong. Please try again.");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CocktailFeed> call, Throwable t)
-            {
-                t.printStackTrace();
-            }
-        });
+        controller.getCocktails(inputField.getText());
     }
 
     public static void main(String[] args)
