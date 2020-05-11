@@ -1,19 +1,13 @@
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 
 public class CocktailFrame extends JFrame
 {
     private CocktailService service;
-    CocktailController controller;
-    private CocktailFeed.Drinks drinks;
+    private CocktailController controller;
 
     private final JLabel pictureLabel;
     private final JPanel inputPanel;
