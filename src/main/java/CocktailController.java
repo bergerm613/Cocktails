@@ -39,7 +39,7 @@ public class CocktailController
                     drink = response.body().drinks.get(rand.nextInt(response.body().drinks.size()));
                     name.setText(drink.strDrink);
 
-                    String[] ing = new String[12];
+                    String[] ing = new String[18];
                     ing[0] = drink.strMeasure1;
                     ing[1] = drink.strIngredient1;
                     ing[2] = drink.strMeasure2;
@@ -52,9 +52,15 @@ public class CocktailController
                     ing[9] = drink.strIngredient5;
                     ing[10] = drink.strMeasure6;
                     ing[11] = drink.strIngredient6;
+                    ing[12] = drink.strMeasure7;
+                    ing[13] = drink.strIngredient7;
+                    ing[14] = drink.strMeasure8;
+                    ing[15] = drink.strIngredient8;
+                    ing[16] = drink.strMeasure9;
+                    ing[17] = drink.strIngredient9;
 
                     String answer = "";
-                    for (int ix = 0; ix < 9; ix++)
+                    for (int ix = 0; ix < 17; ix++)
                     {
                         if (ing[ix] != null)
                         {
