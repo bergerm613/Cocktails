@@ -32,20 +32,48 @@ public class CocktailServiceTest
         assertFalse(drinks.isEmpty());
 
         CocktailFeed.Drinks drink = drinks.get(0);
-        System.out.println(drink.strDrink);
-        System.out.println(drink.strDrinkThumb);
+//        System.out.println(drink.strDrink);
+//        System.out.println(drink.strDrinkThumb);
+//
+//        System.out.println(drink.strMeasure1);
+//        System.out.println(drink.strIngredient1);
+//        System.out.println(drink.strMeasure2);
+//        System.out.println(drink.strIngredient2);
+//        System.out.println(drink.strMeasure3);
+//        System.out.println(drink.strIngredient3);
+//        System.out.println(drink.strMeasure4);
+//        System.out.println(drink.strIngredient4);
+//
+//        System.out.println(drink.strInstructions);
 
-        System.out.println(drink.strMeasure1);
-        System.out.println(drink.strIngredient1);
-        System.out.println(drink.strMeasure2);
-        System.out.println(drink.strIngredient2);
-        System.out.println(drink.strMeasure3);
-        System.out.println(drink.strIngredient3);
-        System.out.println(drink.strMeasure4);
-        System.out.println(drink.strIngredient4);
+        String[] ing = new String[12];
+        ing[0] = drink.strMeasure1;
+        ing[1] = drink.strIngredient1;
+        ing[2] = drink.strMeasure2;
+        ing[3] = drink.strIngredient2;
+        ing[4] = drink.strMeasure3;
+        ing[5] = drink.strIngredient3;
+        ing[6] = drink.strMeasure4;
+        ing[7] = drink.strIngredient4;
+        ing[8] = drink.strMeasure5;
+        ing[9] = drink.strIngredient5;
+        ing[10] = drink.strMeasure6;
+        ing[11] = drink.strIngredient6;
 
-        System.out.println(drink.strInstructions);
+        String answer = "";
+        for (int ix = 0; ix < 9; ix++)
+        {
+            if (ing[ix] != null)
+            {
+                answer += ing[ix];
+            }
+            if (ix % 2 == 1)
+            {
+                answer += "\n";
+            }
+        }
 
+        System.out.println(answer);
         /*
         Whats the best way to get the ings and measurements?
 

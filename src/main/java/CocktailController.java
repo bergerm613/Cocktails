@@ -11,16 +11,18 @@ import java.util.Random;
 public class CocktailController
 {
     private JLabel name;
+    private JLabel ingredients;
     private JLabel instructions;
     private JLabel picture;
     private CocktailService service;
     private CocktailFeed.Drinks drink;
     private Random rand = new Random();
 
-    public CocktailController(CocktailService service, JLabel name, JLabel instructions, JLabel picture)
+    public CocktailController(CocktailService service, JLabel name, JLabel ingredients, JLabel instructions, JLabel picture)
     {
         this.service = service;
         this.name = name;
+        this.ingredients = ingredients;
         this.instructions = instructions;
         this.picture = picture;
     }
@@ -36,6 +38,35 @@ public class CocktailController
                 {
                     drink = response.body().drinks.get(rand.nextInt(response.body().drinks.size()));
                     name.setText(drink.strDrink);
+
+                    String[] ing = new String[12];
+                    ing[0] = drink.strMeasure1;
+                    ing[1] = drink.strIngredient1;
+                    ing[2] = drink.strMeasure2;
+                    ing[3] = drink.strIngredient2;
+                    ing[4] = drink.strMeasure3;
+                    ing[5] = drink.strIngredient3;
+                    ing[6] = drink.strMeasure4;
+                    ing[7] = drink.strIngredient4;
+                    ing[8] = drink.strMeasure5;
+                    ing[9] = drink.strIngredient5;
+                    ing[10] = drink.strMeasure6;
+                    ing[11] = drink.strIngredient6;
+
+                    String answer = "";
+                    for (int ix = 0; ix < 9; ix++)
+                    {
+                        if (ing[ix] != null)
+                        {
+                            answer += ing[ix];
+                        }
+                        if (ix % 2 == 1)
+                        {
+                            answer += "<br>";
+                        }
+                    }
+                    ingredients.setText("<html>" + answer + "</html>");
+
                     instructions.setText("<html><p>" + drink.strInstructions + "</p></html>");
 
                     URL url = new URL(drink.strDrinkThumb);
@@ -44,6 +75,7 @@ public class CocktailController
                 } catch (Exception e)
                 {
                     name.setText("We can't seem to find that drink. Please try again.");
+                    ingredients.setText("");
                     instructions.setText("");
                     picture.setIcon(new ImageIcon());
                 }

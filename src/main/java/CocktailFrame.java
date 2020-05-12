@@ -18,6 +18,7 @@ public class CocktailFrame extends JFrame
     private final JButton clearButton;
     private final JLabel nameLabel;
     private final JLabel instructionsLabel;
+    private final JLabel ingredientsLabel;
 
     private final JPanel topPanel;
     private final JPanel centerPanel;
@@ -39,6 +40,7 @@ public class CocktailFrame extends JFrame
 
         nameLabel = new JLabel("", SwingConstants.CENTER);
         instructionsLabel = new JLabel("", SwingConstants.CENTER);
+        ingredientsLabel = new JLabel("", SwingConstants.CENTER);
         pictureLabel = new JLabel();
 
         inputPanel = new JPanel();
@@ -53,15 +55,15 @@ public class CocktailFrame extends JFrame
         topPanel.add(inputPanel);
 
         descriptionPanel = new JPanel();
-        descriptionPanel.setLayout(new GridLayout(2,1));
+        descriptionPanel.setLayout(new GridLayout(3,1));
         descriptionPanel.add(nameLabel);
+        descriptionPanel.add(ingredientsLabel);
         descriptionPanel.add(instructionsLabel);
 
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(1,2));
         centerPanel.add(pictureLabel);
         centerPanel.add(descriptionPanel);
-
 
         add(topPanel, BorderLayout.PAGE_START);
         add(centerPanel, BorderLayout.CENTER);
@@ -73,7 +75,7 @@ public class CocktailFrame extends JFrame
                 .build();
         service = retrofit.create(CocktailService.class);
 
-        controller = new CocktailController(service, nameLabel, instructionsLabel, pictureLabel);
+        controller = new CocktailController(service, nameLabel, ingredientsLabel, instructionsLabel, pictureLabel);
     }
 
     private void clear()
