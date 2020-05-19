@@ -69,11 +69,8 @@ public class CocktailFrame extends JFrame
         add(centerPanel, BorderLayout.CENTER);
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.thecocktaildb.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(CocktailService.class);
+
+        service = new CocktailServiceFactory().getInstance();
 
         controller = new CocktailController(service, nameLabel, ingredientsLabel, instructionsLabel, pictureLabel);
     }
