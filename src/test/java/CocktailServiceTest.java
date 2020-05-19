@@ -23,7 +23,7 @@ public class CocktailServiceTest
 
         //when
         CocktailFeed feed = service.getCocktails(
-                "margarita").execute().body();
+                "green").execute().body();
 
         //then
         assertNotNull(feed);
@@ -31,20 +31,10 @@ public class CocktailServiceTest
 
         assertFalse(drinks.isEmpty());
 
-        CocktailFeed.Drinks drink = drinks.get(0);
-//        System.out.println(drink.strDrink);
-//        System.out.println(drink.strDrinkThumb);
-//
-//        System.out.println(drink.strMeasure1);
-//        System.out.println(drink.strIngredient1);
-//        System.out.println(drink.strMeasure2);
-//        System.out.println(drink.strIngredient2);
-//        System.out.println(drink.strMeasure3);
-//        System.out.println(drink.strIngredient3);
-//        System.out.println(drink.strMeasure4);
-//        System.out.println(drink.strIngredient4);
-//
-//        System.out.println(drink.strInstructions);
+        CocktailFeed.Drinks drink = drinks.get(2);
+        System.out.println(drink.strDrink);
+        System.out.println(drink.strDrinkThumb);
+
 
         String[] ing = new String[12];
         ing[0] = drink.strMeasure1;
@@ -61,7 +51,7 @@ public class CocktailServiceTest
         ing[11] = drink.strIngredient6;
 
         String answer = "";
-        for (int ix = 0; ix < 9; ix++)
+        for (int ix = 0; ix < 11; ix++)
         {
             if (ing[ix] != null)
             {
@@ -74,15 +64,6 @@ public class CocktailServiceTest
         }
 
         System.out.println(answer);
-        /*
-        Whats the best way to get the ings and measurements?
-
-        String curr;
-        for(int ix = 1; ix < 15; ix++)
-        {
-            curr = "strIngredient" + ix;
-            System.out.println(drink.curr);
-        }
-        */
     }
+
 }

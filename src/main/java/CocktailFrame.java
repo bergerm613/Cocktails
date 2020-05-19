@@ -82,6 +82,7 @@ public class CocktailFrame extends JFrame
     {
         inputField.setText("");
         nameLabel.setText("");
+        ingredientsLabel.setText("");
         instructionsLabel.setText("");
         pictureLabel.setIcon(new ImageIcon());
     }
